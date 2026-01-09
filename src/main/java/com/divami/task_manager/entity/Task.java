@@ -7,7 +7,7 @@ import java.util.UUID;
 @Table(name = "task")
 @Getter
 @Setter
-public class Task {
+public class Task extends BaseAudit {
 
     @Id
     @GeneratedValue
@@ -20,9 +20,8 @@ public class Task {
     @Column(columnDefinition = "text")
     private String description;
 
-    @Builder.Default
-    @Column(nullable = false)
-    private Boolean is_completed = false;
+    @Column(name = "is_completed", nullable = false)
+    private Boolean isCompleted = false;
 }
 
 
