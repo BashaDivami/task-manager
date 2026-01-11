@@ -17,11 +17,7 @@ public class ProjectController {
         this.projectService = projectService;
     }
 
-    /**
-     * 1️⃣ GET projects
-     * - /api/projects           → fetch all projects
-     * - /api/projects?id=UUID   → fetch project by id
-     */
+ 
     @GetMapping
     public Object getProjects(
             @RequestParam(value = "id", required = false) UUID projectId
@@ -32,10 +28,7 @@ public class ProjectController {
         return projectService.getAllProjects();
     }
 
-    /**
-     * 2️⃣ UPDATE project
-     * - PUT /api/projects/{id}
-     */
+
     @PutMapping("/{id}")
     public Project updateProject(
             @PathVariable UUID id,
@@ -44,10 +37,7 @@ public class ProjectController {
         return projectService.updateProject(id, project);
     }
 
-    /**
-     * 3️⃣ DELETE project
-     * - DELETE /api/projects/{id}
-     */
+    
     @DeleteMapping("/{id}")
     public void deleteProject(@PathVariable UUID id) {
         projectService.deleteProject(id);
