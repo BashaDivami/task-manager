@@ -27,23 +27,7 @@ public class ProjectService {
                 );
     }
 
-    public Project updateProject(UUID projectId, ProjectUpdateRequest request) {
-        Project project = getProjectById(projectId);
-
-        if (request.name() != null)
-            project.setName(request.name());
-
-        if (request.description() != null)
-            project.setDescription(request.description());
-
-//        if (request.userId() != null) {
-//            User user = userRepository.findById(request.userId())
-//                    .orElseThrow(() -> new RuntimeException("User not found"));
-//            project.setUser(user);
-//        }
-
-        return projectRepository.save(project);
-    }
+   
 
 
     public void deleteProject(UUID projectId) {
