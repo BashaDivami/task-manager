@@ -2,7 +2,7 @@ package com.divami.task_manager.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Table(name = "user")
@@ -13,9 +13,10 @@ import java.time.LocalDateTime;
 @Builder
 public class User extends BaseAudit {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+   @Id
+   @GeneratedValue(strategy = GenerationType.UUID)
+   @Column(nullable = false, updatable = false)
+   private UUID id;
 
     @Column(nullable = false, length = 100)
     private String name;
@@ -30,8 +31,6 @@ public class User extends BaseAudit {
     @Column(name = "is_active", nullable = false)
     private Boolean active = true;
 
-    @Column(name = "created_at", updatable = false)
-    private LocalDateTime createdAt;
 
    
 }

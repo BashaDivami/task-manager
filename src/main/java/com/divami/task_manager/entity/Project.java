@@ -1,10 +1,10 @@
 package com.divami.task_manager.entity;
+
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 import java.util.UUID;
-import java.time.LocalDateTime;
-
-
 
 @Entity
 @Table(name = "project")
@@ -25,12 +25,12 @@ public class Project extends BaseAudit {
 
     @Column(length = 1000)
     private String description;
+    
+    @ManyToOne()
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    @Column(name = "created_at", updatable = false)
-    private LocalDateTime createdAt;
+    @OneToMany(mappedBy = "project")
+    private List<Task> tasks;
 
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = LocalDateTime.now();
-    }
 }
