@@ -15,11 +15,27 @@ public class ProjectService {
     public ProjectService(ProjectRepository projectRepository) {
         this.projectRepository = projectRepository;
     }
-
+    // to fetch all projects
     public List<Project> getAllProjects() {
         return projectRepository.findAll();
     }
     
+    
+    public Project getProjectById(UUID projectId) {
+        return projectRepository.findById(projectId)
+                .orElseThrow(() ->
+                        new RuntimeException("Project not found with id: " + projectId)
+                );
+    }
+    
+    // create project
+    public Project createProject(Project project) {
+        
+        return projectRepository.save(project);
+    }
+    
+    
+    // update project
     public Project updateProject(UUID id, Project updatedProject) {
         Project existing = getProjectById(id);
         existing.setName(updatedProject.getName());
@@ -27,15 +43,8 @@ public class ProjectService {
         existing.setUser(updatedProject.getUser()); 
         return projectRepository.save(existing);
     }
-  
-    public Project getProjectById(UUID projectId) {
-        return projectRepository.findById(projectId)
-                .orElseThrow(() ->
-                        new RuntimeException("Project not found with id: " + projectId)
-                );
-    }
-
-
+     
+	// delete project
     public void deleteProject(UUID projectId) {
         projectRepository.deleteById(projectId);
     }

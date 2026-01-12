@@ -27,7 +27,11 @@ public class ProjectController {
         }
         return projectService.getAllProjects();
     }
-
+    
+    @PostMapping
+    public Project createProject(@RequestBody Project project) {
+        return projectService.createProject(project);
+    }
 
     @PutMapping("/{id}")
     public Project updateProject(
